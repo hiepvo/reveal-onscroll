@@ -9,7 +9,7 @@ html {
 }
 
 .section {
-  height: 40rem;
+  height: 80rem;
 }
 
 .cp-reveal-wrapper {
@@ -75,9 +75,9 @@ html {
   text-align: justify;
   overflow: hidden;
   height: 0px; /*200px*/
-  -webkit-transition: height .5s cubic-bezier(0.190, 1.000, 0.220, 1.000);
-  -moz-transition: height .5s cubic-bezier(0.190, 1.000, 0.220, 1.000);
-  transition: height .5s cubic-bezier(0.190, 1.000, 0.220, 1.000);
+  -webkit-transition: height 1s ease-out;
+  -moz-transition: height 1s ease-out;
+  transition: height 1s ease-out;
   font-size: 15px;
   left: 0;
   top: -1px;
