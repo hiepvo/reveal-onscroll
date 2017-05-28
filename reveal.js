@@ -2,27 +2,28 @@
  * Created by hiepvo on 3/29/17.
  */
 (function(){
-  var init = {};
+  var init        = {};
   var didScroll   = false;
-  window.onscroll = scollPos;
+  window.onscroll = scrollPos;
+  var default_h   = 326;
 
-  function scollPos(){
-    didScroll = true;
-    var arr   = document.getElementsByClassName("cp-section");
+  function scrollPos(){
+    didScroll    = true;
+    var sections = document.getElementsByClassName("cp-section");
 
-    var body = document.body;
-    var doc  = document.documentElement;
-    // (2) Calculate the page scroll.
-    // All browsers except IE<9 support `pageXOffset/pageYOffset`, and in IE when DOCTYPE is set,
-    // the scroll can be taken from documentElement(<html>), otherwise from `body` - so we take what we can.
-    var scrollTop = window.pageYOffset || doc.scrollTop || body.scrollTop;
-    var i         = 0, len = arr && arr.length || 0;
-    for(i; i < len; i++){
-      if(scrollTop - arr[i].offsetTop > 150){
-        addClass(arr[i], 'active');
+    var j   = 0,
+        arr = [],
+        len = sections && sections.length || 0;
+
+    var vpHeight = window.innerHeight;
+    for(j; j < len; j++){
+      var vpPosition = sections[j].getBoundingClientRect();
+
+      if(vpPosition.top <= vpHeight / 2){
+        sections[j].style.height          = default_h + 'px';
+        sections[j].style.transitionDelay = j * 0.2 + 's';
       }
     }
-
   }
 
   setInterval(function(){
@@ -30,7 +31,6 @@
       didScroll = false;
     }
   }, 100);
-
 
   function hasClass(el, className){
     if(el.classList)
@@ -53,7 +53,6 @@
       el.className = el.className.replace(reg, ' ')
     }
   }
-
 
   window.init = init;
 
